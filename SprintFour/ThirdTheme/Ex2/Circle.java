@@ -1,4 +1,6 @@
-public class Circle implements Figure {
+package SprintFour.ThirdTheme.Ex2;
+
+public class Circle  implements Figure{
     // Радиус круга
     private final double r;
 
@@ -6,7 +8,6 @@ public class Circle implements Figure {
         this.r = r;
     }
 
-    @Override
     public double getArea() {
         return Math.PI * r * r;
     }

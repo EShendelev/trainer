@@ -1,3 +1,5 @@
+package SprintFour.ThirdTheme.Ex2;
+
 public class Practicum {
 
     public static void main(String[] args) {
