@@ -32,7 +32,7 @@ public class Practicum {
             return new MobilePhone(number);
         } else{
             // Иначе создайте экземпляр класса Smartphone
-            return new Smartphone(number, "Android");
+            return new Smartphone(number, "Telegram");
         }
     }
 

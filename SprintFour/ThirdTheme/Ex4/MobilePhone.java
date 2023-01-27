@@ -6,7 +6,16 @@ public class MobilePhone extends Phone {
         super(number);
     }
 
+    
     public final void sendSms(String targetNumber, String messageText) {
         System.out.println("Отправляем сообщение " + messageText + " по номеру " + targetNumber);
+    }
+
+
+    @Override
+    public void makeCall(String targetNumber) {
+        System.out.println("Звоним с номера " + number);
+        System.out.println("Набираем номер " + targetNumber + " и звоним по сотовой связи");
+        System.out.println("Привет!");
     }
 }
