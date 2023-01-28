@@ -1,3 +1,5 @@
+package SprintFour.ThirdTheme.Ex6;
+
 public class Movie implements MediaItem {
 
     private final String title;

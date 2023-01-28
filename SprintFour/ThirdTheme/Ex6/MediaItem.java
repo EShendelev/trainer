@@ -1,4 +1,4 @@
-
+package SprintFour.ThirdTheme.Ex6;
 
 public interface MediaItem {
 
