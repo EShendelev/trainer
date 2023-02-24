@@ -1,53 +1,59 @@
 package SandBox;
 
-public class Practicum {
-    public static void main(String[] args) {
-        int[] array1 = new int[]{1, 3, 4, 6, 8};
-        int[] array2 = new int[]{1, 2, 3, 8, 9};
-        int[] resultArray = merge(array1, array2);
+import java.time.LocalDate;
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.Comparator;
 
-        for (int e : resultArray) {
-            System.out.print(e + ", ");
+
+public class Practicum {
+    private static Set<Letter> letters = new LinkedHashSet<>();
+
+    public static void main(String[] args) {
+        // информация о письмах (в порядке занесения в систему)
+        letters.add(new Letter("Джон Смит", LocalDate.of(2021, 7, 7), "текст письма №1 ..."));
+        letters.add(new Letter("Аманда Линс", LocalDate.of(2021, 6, 17), "текст письма №2 ..."));
+        letters.add(new Letter("Джо Кью", LocalDate.of(2021, 7, 5), "текст письма №3 ..."));
+        letters.add(new Letter("Мишель Фернандес", LocalDate.of(2021, 8, 23), "текст письма №4 ..."));
+
+        printOrderedById(letters);
+        printOrderedByDateReceived(letters);
+    }
+
+    private static void printOrderedById(Set<Letter> letters) {
+        System.out.println("Все письма с сортировкой по ID: ");
+
+        for (Letter letter : letters) {
+            System.out.println("    * Письмо от " + letter.authorName + " поступило " + letter.dateReceived);
         }
     }
 
-    private static int[] merge(int[] leftArray, int[] rightArray) {
-
-        int leftSize = leftArray.length;
-        int rightSize = rightArray.length;
-        int[] resultArray = new int[leftSize + rightSize];
-
-        // Индексы, по которым идёт итерация
-        int left = 0;
-        int right = 0;
-        int index = 0;
-
-        while (index < resultArray.length) {
-
-            // Если левый индекс больше максимального левого индекса — добавляем элемент из правого подмассива.
-            if (left >= leftSize) {
-                resultArray[index] = rightArray[right];
-                right++;
+    private static void printOrderedByDateReceived(Set<Letter> letters) {
+        System.out.println("Все письма с сортировкой по дате получения: ");
+        Comparator<Letter> comparator = new Comparator<Letter>() {
+            @Override
+            public int compare(Letter o1, Letter o2) {
+                return o1.dateReceived.compareTo(o2.dateReceived);
             }
-
-            // Если правый индекс больше максимального — добавляем элемент из левого подмассива.
-            else if (right >= rightSize) {
-                // !!! Добавьте ваш код
-            }
-
-            // Если оба текущих индекса внутри своих границ, нужно сравнивать элементы по этим индексам
-            // Если элемент в левом массиве меньше — добавляем его и увеличиваем левый индекс.
-            else if (leftArray[left] <= rightArray[right]) {
-                resultArray[index] = leftArray[left];
-                left++;
-            }
-            // Иначе — делаем тоже самое с правым индексом.
-            else {
-                // !!! Добавьте ваш код
-            }
-            index++;
+        };
+        // реализуйте этот метод
+        Set<Letter> sortedLetters = new TreeSet<>(comparator);
+        sortedLetters.addAll(letters);
+        for (Letter letter: sortedLetters) {
+            System.out.println("    * Письмо от " + letter.authorName + " поступило " + letter.dateReceived);
         }
+    }
 
-        return resultArray;
+    static class Letter {
+        public String authorName;      // имя отправителя
+        public LocalDate dateReceived; // дата получения письма
+        public String text;            // текст письма
+
+        public Letter(String senderName, LocalDate dateReceived, String text) {
+            this.authorName = senderName;
+            this.dateReceived = dateReceived;
+            this.text = text;
+        }
     }
 }
