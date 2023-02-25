@@ -5,7 +5,7 @@ public class LimitException  extends RuntimeException {
 
 
     public LimitException(String message, int attempts) {
-        super(message);
+        super(String.format("%s: %d\n", message, attempts));
         this.attempts = attempts;
     }
 }
